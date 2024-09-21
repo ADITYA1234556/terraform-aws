@@ -20,7 +20,7 @@ resource "aws_db_instance" "aditya-rds" {
   storage_type           = "gp2"
   engine                 = "mysql"
   engine_version         = "5.6.34"
-  db_name                   = var.DBNAME
+  db_name                = var.DBNAME
   username               = var.DBUSER
   password               = var.DBPASS
   parameter_group_name   = "default.mysql5.6"
