@@ -1,0 +1,5 @@
+terraform
+terraform.pub
+.terraform/
+.terraform/modules
+.terraform/providers
