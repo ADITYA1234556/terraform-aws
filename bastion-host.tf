@@ -27,4 +27,6 @@ resource "aws_instance" "aditya-bastion" {
     private_key = file(var.PVTKEY)
     host = self.public_ip
   }
+
+  depends_on = [aws_db_instance.aditya-rds]
 }
