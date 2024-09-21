@@ -1,4 +1,13 @@
 sudo apt update
-sudo apt install git mysql-client y
+if ! sudo apt install -y git mysql-client; then
+    echo "Initial install failed, running apt update again..."
+    sudo apt update
+    # Try to install again
+    if ! sudo apt install -y git mysql-client; then
+        echo "Second install attempt failed. Exiting."
+        exit 1
+    fi
+fi
 git clone -b vp-rem https://github.com/ADITYA1234556/docker-project.git
-mysql -h ${RDS-ENDPOINT} -u ${DBUSER} --password=${DBPASS} accounts < /home/ubuntu/docker-project/src/main/resources/db_backup.sql
+sudo chown -R ubuntu:ubuntu /home/ubuntu/docker-project/
+mysql -h ${RDS_ENDPOINT} -u ${DBUSER} --password=${DBPASS} accounts --ssl-mode=DISABLED < /home/ubuntu/docker-project/src/main/resources/db_backup.sql

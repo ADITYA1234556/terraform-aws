@@ -66,7 +66,7 @@ resource "aws_security_group" "aditya-backend-sg" {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
-    security_groups = [aws_security_group.aditya-vpc-sg.id]
+    security_groups = [aws_security_group.aditya-vpc-sg.id, aws_security_group.aditya-bastion-sg.id]
   }
 }
 
